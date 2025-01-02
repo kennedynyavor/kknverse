@@ -13,23 +13,59 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-hello <- function() {
-  print("Hello, world!")
-}
 
+#' Converts to End of Month
+#'
+#' @param date A date value
+#'
+#' @returns A date representing the end of the month of the input date
+#' @export
+#'
+#' @examples eomonth(as.Date("2024-02-12"))
 eomonth <- function(date) {
   lubridate::ceiling_date(date, "month") - lubridate::days(1)
 }
 
+
+#' Converts to Beginning of Month
+#'
+#' @param date A date value
+#'
+#' @returns The beginning month of the input date
+#' @export
+#'
+#' @examples bomonth(as.Date("2024-02-12"))
 bomonth <- function(date){
   lubridate::floor_date(date, "month")
 }
 
+
+#' Add months to date
+#'
+#' @param date The date value
+#' @param months The number of months to add
+#'
+#' @returns A date value "months" from the input date
+#' @export
+#'
+#' @examples bomonth(as.Date("2024-02-12"),4)
 edate <- function(date,months) {
   ans <- date %m+% base::months(months)
   return(ans)
 }
 
+
+
+#' Calculate date difference
+#'
+#' @param start_date The start date of the period
+#' @param end_date The end date of the period
+#' @param unit The unit of difference between the two dates (m=months, d = days, y = years,q=quarters)
+#'
+#' @returns Returns the number of periods (days, months, years, quarters) between two dates
+#' @export
+#'
+#' @examples date_diff(as.Date('2021-02-16'),as.Date('2024-12-21'),"m")
 date_diff <- function(start_date, end_date,unit = 'month') {
   int <- lubridate::interval(start_date,end_date)
   unit_ <- trimws(tolower(unit),which = "both")
@@ -45,6 +81,16 @@ date_diff <- function(start_date, end_date,unit = 'month') {
   return(result)
 }
 
+
+
+#' A function that convert a date into a numeric yyyymm form
+#'
+#' @param date A date value
+#'
+#' @returns A numeric representation of a date in the for yyyymm
+#' @export
+#'
+#' @examples date_yyyymm(as.Date('2023-03-23'))
 date_yyyymm <- function(date){
   ans <- lubridate::year(date)*100+lubridate::month(date)
   return(ans)
