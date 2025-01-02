@@ -30,13 +30,14 @@ eomonth <- function(date) {
 #' Converts to Beginning of Month
 #'
 #' @param date A date value
+#' @param n_months Number of months from current date
 #'
 #' @returns The beginning month of the input date
 #' @export
 #'
 #' @examples bomonth(as.Date("2024-02-12"))
-bomonth <- function(date){
-  lubridate::floor_date(date, "month")
+bomonth <- function(date, n_months = 0){
+  lubridate::floor_date(date, "month") + base::months(n_months)
 }
 
 
@@ -95,3 +96,5 @@ date_yyyymm <- function(date){
   ans <- lubridate::year(date)*100+lubridate::month(date)
   return(ans)
 }
+
+

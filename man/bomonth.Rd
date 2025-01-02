@@ -4,10 +4,12 @@
 \alias{bomonth}
 \title{Converts to Beginning of Month}
 \usage{
-bomonth(date)
+bomonth(date, n_months = 0)
 }
 \arguments{
 \item{date}{A date value}
+
+\item{n_months}{Number of months from current date}
 }
 \value{
 The beginning month of the input date
