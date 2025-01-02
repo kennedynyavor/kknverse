@@ -103,3 +103,22 @@ date_yyyymm <- function(date){
 }
 
 
+
+#' Function that loads global variables
+#'
+#' @param var A string of lines to add
+#'
+#' @returns Nothing, load global variables
+#' @export
+#'
+#' @examples
+#' update_param("library(devtools)")
+update_param <- function(var){
+  if (!file.exists(".Rprofile")){
+    writeLines(var,".Rprofile")
+    .rs.restartR(clean = TRUE)
+  } else {
+    writeLines(var,".Rprofile")
+    .rs.restartR(clean = TRUE)
+  }
+}
