@@ -14,7 +14,7 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 
-#' Converts to End of Month
+#' @title Converts to End of Month
 #'
 #' @param date A date value
 #'
@@ -27,7 +27,7 @@ eomonth <- function(date) {
 }
 
 
-#' Converts to Beginning of Month
+#' @title Converts to Beginning of Month
 #'
 #' @param date A date value
 #' @param n_months Number of months from current date
