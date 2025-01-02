@@ -35,9 +35,11 @@ eomonth <- function(date) {
 #' @returns The beginning month of the input date
 #' @export
 #'
+#' @import lubridate
+#'
 #' @examples bomonth(as.Date("2024-02-12"))
 bomonth <- function(date, n_months = 0){
-  lubridate::floor_date(date, "month") + base::months(n_months)
+  floor_date(date, "month") + months(n_months)
 }
 
 
@@ -51,7 +53,7 @@ bomonth <- function(date, n_months = 0){
 #'
 #' @examples bomonth(as.Date("2024-02-12"),4)
 edate <- function(date,months) {
-  ans <- date %m+% base::months(months)
+  ans <- date %m+% months(months)
   return(ans)
 }
 
@@ -66,6 +68,8 @@ edate <- function(date,months) {
 #' @returns Returns the number of periods (days, months, years, quarters) between two dates
 #' @export
 #'
+#' @import lubridate
+#'
 #' @examples date_diff(as.Date('2021-02-16'),as.Date('2024-12-21'),"m")
 date_diff <- function(start_date, end_date,unit = 'month') {
   int <- lubridate::interval(start_date,end_date)
@@ -75,8 +79,8 @@ date_diff <- function(start_date, end_date,unit = 'month') {
     grepl("^[dD]",unit_) ~ floor(as.numeric(int/lubridate::days(1))),
     grepl("^[mM]",unit_) ~ floor(as.numeric(int/months(1))),
     grepl("^[yY]",unit_) ~ floor(as.numeric(int/lubridate::years(1))),
-    grepl("^[qQ]",unit_) ~ (lubridate::year(end_date) - lubridate::year(start_date))*4 +
-                           (lubridate::quarter(end_date) - lubridate::quarter(start_date)),
+    grepl("^[qQ]",unit_) ~ (year(end_date) - year(start_date))*4 +
+                           (quarter(end_date) - quarter(start_date)),
     .default = NA
   )
   return(result)
@@ -90,10 +94,11 @@ date_diff <- function(start_date, end_date,unit = 'month') {
 #'
 #' @returns A numeric representation of a date in the for yyyymm
 #' @export
+#' @import lubridate
 #'
 #' @examples date_yyyymm(as.Date('2023-03-23'))
 date_yyyymm <- function(date){
-  ans <- lubridate::year(date)*100+lubridate::month(date)
+  ans <- year(date)*100+month(date)
   return(ans)
 }
 
