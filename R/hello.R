@@ -38,7 +38,7 @@ eomonth <- function(date) {
 #' @import lubridate
 #'
 #' @examples bomonth(as.Date("2024-02-12"))
-bomonth <- function(date, n_months = 0){
+bomonth <- function(date, n_months = 0) {
   floor_date(date, "month") + months(n_months)
 }
 
@@ -51,8 +51,8 @@ bomonth <- function(date, n_months = 0){
 #' @returns A date value "months" from the input date
 #' @export
 #'
-#' @examples bomonth(as.Date("2024-02-12"),4)
-edate <- function(date,months) {
+#' @examples bomonth(as.Date("2024-02-12"), 4)
+edate <- function(date, months) {
   ans <- date %m+% months(months)
   return(ans)
 }
@@ -70,19 +70,19 @@ edate <- function(date,months) {
 #'
 #' @import lubridate
 #'
-#' @examples date_diff(as.Date('2021-02-16'),as.Date('2024-12-21'),"m")
-date_diff <- function(start_date, end_date,unit = 'month') {
-  int <- lubridate::interval(start_date,end_date)
-  unit_ <- trimws(tolower(unit),which = "both")
+#' @examples date_diff(as.Date("2021-02-16"), as.Date("2024-12-21"), "m")
+date_diff <- function(start_date, end_date, unit = "month") {
+  int <- lubridate::interval(start_date, end_date)
+  unit_ <- trimws(tolower(unit), which = "both")
   result <-
     dplyr::case_when(
-    grepl("^[dD]",unit_) ~ floor(as.numeric(int/lubridate::days(1))),
-    grepl("^[mM]",unit_) ~ floor(as.numeric(int/months(1))),
-    grepl("^[yY]",unit_) ~ floor(as.numeric(int/lubridate::years(1))),
-    grepl("^[qQ]",unit_) ~ (year(end_date) - year(start_date))*4 +
-                           (quarter(end_date) - quarter(start_date)),
-    .default = NA
-  )
+      grepl("^[dD]", unit_) ~ floor(as.numeric(int / lubridate::days(1))),
+      grepl("^[mM]", unit_) ~ floor(as.numeric(int / months(1))),
+      grepl("^[yY]", unit_) ~ floor(as.numeric(int / lubridate::years(1))),
+      grepl("^[qQ]", unit_) ~ (year(end_date) - year(start_date)) * 4 +
+        (quarter(end_date) - quarter(start_date)),
+      .default = NA
+    )
   return(result)
 }
 
@@ -96,9 +96,9 @@ date_diff <- function(start_date, end_date,unit = 'month') {
 #' @export
 #' @import lubridate
 #'
-#' @examples date_yyyymm(as.Date('2023-03-23'))
-date_yyyymm <- function(date){
-  ans <- year(date)*100+month(date)
+#' @examples date_yyyymm(as.Date("2023-03-23"))
+date_yyyymm <- function(date) {
+  ans <- year(date) * 100 + month(date)
   return(ans)
 }
 
@@ -113,12 +113,12 @@ date_yyyymm <- function(date){
 #'
 #' @examples
 #' update_param("library(devtools)")
-update_param <- function(var){
-  if (!file.exists(".Rprofile")){
-    writeLines(var,".Rprofile")
+update_param <- function(var) {
+  if (!file.exists(".Rprofile")) {
+    writeLines(var, ".Rprofile")
     .rs.restartR(clean = TRUE)
   } else {
-    writeLines(var,".Rprofile")
+    writeLines(var, ".Rprofile")
     .rs.restartR(clean = TRUE)
   }
 }
